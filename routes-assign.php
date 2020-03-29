@@ -3,7 +3,7 @@ require 'includes/preload.php';
 
 $r = $ms->getRoute($_GET['id']);
 
-$page_title = "Route Assign ";
+$page_title = "Route Assign ".$r['name'];
 
 if(!empty($_POST)){
 
