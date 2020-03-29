@@ -3,6 +3,25 @@ require 'includes/preload.php';
 
 $page_title = "Routes";
 
+if(!empty($_POST)){
+
+  $ri = $db->prepare("INSERT INTO `routes`(`name`, `kitchen`, `mon`, `tue`, `wed`, `thu`, `fri`, `sat`, `sun`)
+  VALUES (:name,:kitchen,:mon,:tue,:wed,:thu,:fri,:sat,:sun);");
+
+  $ri->execute(array(
+    ":name" => $_POST['name'],
+    ":kitchen" => $_POST['kitchen'],
+    ":mon" => $_POST['mon'],
+    ":tue" => $_POST['tue'],
+    ":wed" => $_POST['wed'],
+    ":thu" => $_POST['thu'],
+    ":fri" => $_POST['fri'],
+    ":sat" => $_POST['sat'],
+    ":sun" => $_POST['sun']
+  ));
+
+}
+
 require 'includes/html-head.php';
  ?>
 
@@ -23,13 +42,7 @@ require 'includes/html-head.php';
               <h6 class="m-0 font-weight-bold text-primary">Add Route</h6>
             </div>
             <div class="card-body">
-              <?php if(!empty($reg)){
-                if($reg['error']){
-                  echo "<div class='alert alert-danger'>{$reg['message']}</div>";
-                } else {
-                  echo "<div class='alert alert-success'>{$reg['message']}</div>";
-                }
-              } ?>
+
               <form method="post" class="form-inline">
                 <input type="hidden" name="new_user" value="1">
                 <label class="sr-only" for="name">Name</label>
@@ -72,7 +85,37 @@ require 'includes/html-head.php';
               </form>
             </div>
           </div>
-
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Routes</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Kitchen</th>
+                      <th>DOW</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $sites = $ms->listRoutes();
+                    if(!empty($sites)){
+                      foreach($sites as $s){ ?>
+                      <tr>
+                        <td><?= $s['name']; ?></td>
+                        <td><?= $ms->getKitchen($s['kitchen'])['name']; ?></td>
+                        <td><?= $ms->dowOut($s); ?></td>
+                      </tr>
+                      <?php }
+                    } ?>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
         </div>
         <!-- /.container-fluid -->

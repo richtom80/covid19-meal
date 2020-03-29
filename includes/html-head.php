@@ -67,10 +67,10 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Setup :</h6>
-            <a class="collapse-item" href="kitchens.php">Kitchens</a>
+            <a class="collapse-item" href="<?= DOMAIN; ?>kitchens.php">Kitchens</a>
             <a class="collapse-item" href="#">Meals</a>
-            <a class="collapse-item" href="volunteers.php">Volunteers</a>
-            <a class="collapse-item" href="#">Routes</a>
+            <a class="collapse-item" href="<?= DOMAIN; ?>volunteers.php">Volunteers</a>
+            <a class="collapse-item" href="<?= DOMAIN; ?>routes.php">Routes</a>
           </div>
         </div>
       </li>
