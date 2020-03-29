@@ -184,8 +184,42 @@ CREATE TABLE `volunteers` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
+-- Table structure for table `routes`
+--
+
+CREATE TABLE `routes` (
+  `id` int(10) NOT NULL,
+  `name` varchar(32) NOT NULL,
+  `kitchen` int(10) NOT NULL,
+  `mon` tinyint(1) DEFAULT NULL,
+  `tue` tinyint(1) DEFAULT NULL,
+  `wed` tinyint(1) DEFAULT NULL,
+  `thu` tinyint(1) DEFAULT NULL,
+  `fri` tinyint(1) DEFAULT NULL,
+  `sat` tinyint(1) DEFAULT NULL,
+  `sun` tinyint(1) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `routes`
+--
+ALTER TABLE `routes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `routes`
+--
+ALTER TABLE `routes`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+COMMIT;
 
 --
 -- Indexes for table `kitchen`
