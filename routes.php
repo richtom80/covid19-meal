@@ -97,6 +97,9 @@ require 'includes/html-head.php';
                       <th>Name</th>
                       <th>Kitchen</th>
                       <th>DOW</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                      <th>Assign</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -108,6 +111,9 @@ require 'includes/html-head.php';
                         <td><?= $s['name']; ?></td>
                         <td><?= $ms->getKitchen($s['kitchen'])['name']; ?></td>
                         <td><?= $ms->dowOut($s); ?></td>
+                        <td><a href="route-edit.php?id=<?= $s['id']; ?>" class="btn btn-sm btn-warning">Edit</a></td>
+                        <td><button type="button" onclick="checkDelete(<?= $s['id']; ?>, '<?= $s['name']; ?>');" class="btn btn-sm btn-danger">Delete</button></td>
+                        <td><a href="routes-assign.php?id=<?= $s['id']; ?>" class="btn btn-sm btn-primary">Assign</a></td>
                       </tr>
                       <?php }
                     } ?>
@@ -146,6 +152,14 @@ require 'includes/html-head.php';
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  <script>
+  function checkDelete(id, name){
+    var msg = "Are you sure you want to delete "+name+"?";
+    if(confirm(msg)){
+      window.location = "routes-delete.php?id="+id;
+    }
+  }
+  </script>
 
 
 </body>

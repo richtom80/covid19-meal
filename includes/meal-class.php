@@ -27,6 +27,10 @@ class meal_system {
     return $this->dbh->query("SELECT * FROM `routes`")->fetchAll();
   }
 
+  public function getRoute($r){
+    return $this->dbh->query("SELECT * FROM `routes` WHERE `id` = $r")->fetch();
+  }
+
   public function listVolunteers(){
     return $this->dbh->query("SELECT * FROM `volunteers`")->fetchAll();
   }
