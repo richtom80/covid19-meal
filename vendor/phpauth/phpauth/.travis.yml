@@ -1,0 +1,20 @@
+sudo: false
+language: php
+
+php:
+    - 7.0
+    - 7.1
+    - 7.2
+    - 7.3
+    
+before_script:
+  - composer install
+  - mysql --version
+  - mysql -e 'create database phpauthtest;'
+  - mysql -u root phpauthtest < database_defs/database_mysql.sql
+
+script:
+    - phpunit --stderr
+
+notifications:
+    email: false

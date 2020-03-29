@@ -1,0 +1,6 @@
+/includes/main.php
+error_log
+/template
+composer.*
+/cgi-bin
+.ftpconfig
