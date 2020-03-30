@@ -5,3 +5,4 @@ composer.*
 /cgi-bin
 .ftpconfig
 .htaccess
+test.php

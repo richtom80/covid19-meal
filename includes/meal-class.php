@@ -102,6 +102,17 @@ class meal_system {
     }
   }
 
+  public function routeOut($rid, $crid = false){
+    if(empty($rid)){
+      $o = "<em class='text-muted'>None</em>";
+    } elseif($rid != $crid){
+      $o = "<span class='text-danger'>".$this->getRoute($rid)['name']."</span>";
+    } else {
+      $o = "<span class='text-success'>".$this->getRoute($rid)['name']."</span>";
+    }
+    return $o;
+  }
+
   public function lookupUser($uid, $out = 'short'){
     $user = $this->dbh->query("SELECT `email`, `name`, `phone`, `level` FROM `phpauth_users` WHERE `id` = $uid;")->fetch();
     if($out == 'short'){

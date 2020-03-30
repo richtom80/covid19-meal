@@ -36,7 +36,10 @@ require 'includes/html-head.php';
 
           <!-- Page Heading -->
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800"><?= $page_title; ?></h1>
+            <h1 class="h3 mb-0 text-gray-800"><?= $page_title; ?>
+
+            </h1>
+            <a href="<?= DOMAIN; ?>routes.php" class="btn btn-sm btn-primary pull-right">&laquo; Back</a>
           </div>
 
           <div class="card shadow mb-4">
@@ -45,6 +48,47 @@ require 'includes/html-head.php';
             </div>
             <div class="card-body">
               <div id="map" style="height: 700px;">Map Loading&hellip;</div>
+            </div>
+          </div>
+
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Assign Sites</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Phone</th>
+                      <th>Type</th>
+                      <th>Postcode</th>
+                      <th># Std</th>
+                      <th># Veg</th>
+                      <th>DOW</th>
+                      <th>Route</th>
+                      <th>Assign</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <?php foreach($ms->listSites() as $site){ ?>
+                    <tr>
+                      <td><?= $site['name']." ".$site['surname']; ?></td>
+                      <td><?= $site['phone']; ?></td>
+                      <td><?= ucwords($site['type']); ?></td>
+                      <td><?= $site['postcode']; ?></td>
+                      <td><?= $site['std_meal']; ?></td>
+                      <td><?= $site['veg_meal']; ?></td>
+                      <td><?= $ms->dowOut($site); ?></td>
+                      <td><?= $ms->routeOut($site['route'], $_GET['id']); ?></td>
+                      <td><input type="checkbox" name="site_<?= $site['id']; ?>" <?php if($site['route'] == $_GET['id']) echo "checked"; ?>/></td>
+                    </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
 
@@ -113,8 +157,6 @@ require 'includes/html-head.php';
     }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<?= GOOGLE_API_JS; ?>&callback=initMap" async defer></script>
-
-
 
 </body>
 
