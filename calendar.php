@@ -23,8 +23,8 @@ require 'includes/html-head.php';
               <h6 class="m-0 font-weight-bold text-primary">DOW</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-                
+              <div id="calendar">
+
               </div>
             </div>
           </div>
@@ -58,13 +58,22 @@ require 'includes/html-head.php';
 
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
+  <script src='/js/packages/core/main.js'></script>
+  <script src='/js/packages/daygrid/main.js'></script>
   <script>
-  function checkDelete(id, name){
-    var msg = "Are you sure you want to delete "+name+"?";
-    if(confirm(msg)){
-      window.location = "routes-delete.php?id="+id;
-    }
-  }
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      height: 650,
+      plugins: [ 'dayGrid' ],
+      defaultView: 'dayGridWeek',
+      events: '/routes-feed.php'
+    });
+
+    calendar.render();
+  });
+
   </script>
 
 
