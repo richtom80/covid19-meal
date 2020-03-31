@@ -59,7 +59,16 @@ require 'includes/html-head.php';
   <!-- Page level custom scripts -->
   <script src="js/demo/datatables-demo.js"></script>
   <script src='/js/packages/core/main.js'></script>
+  <script src='/js/packages/core/locales/en-gb.js'></script>
   <script src='/js/packages/daygrid/main.js'></script>
+  <style>
+  .fc-event{
+    height:60px !important;
+  }
+  .fc-title {
+    white-space: normal;
+  }
+  </style>
   <script>
   document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
@@ -67,8 +76,15 @@ require 'includes/html-head.php';
     var calendar = new FullCalendar.Calendar(calendarEl, {
       height: 650,
       plugins: [ 'dayGrid' ],
+      locale: 'en-gb',
       defaultView: 'dayGridWeek',
-      events: '/routes-feed.php'
+      events: '/routes-feed.php',
+      eventClick: function(info){
+        info.jsEvent.preventDefault(); // don't let the browser navigate
+        if (info.event.url) {
+          window.location = info.event.url;
+        }
+      }
     });
 
     calendar.render();
