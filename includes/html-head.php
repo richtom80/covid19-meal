@@ -83,7 +83,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Routing Utilities:</h6>
-            <a class="collapse-item" href="#">Calendar</a>
+            <a class="collapse-item" href="<?= DOMAIN; ?>calendar.php">Calendar</a>
             <a class="collapse-item" href="#">Print</a>
             <a class="collapse-item" href="#">Fulfilment</a>
           </div>
