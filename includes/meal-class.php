@@ -39,8 +39,8 @@ class meal_system {
     return $this->dbh->query("SELECT * FROM `volunteers` WHERE `id` = $v")->fetch();
   }
 
-  public function listSites(){
-    return $this->dbh->query("SELECT * FROM `sites`")->fetchAll();
+  public function listSites($where = ""){
+    return $this->dbh->query("SELECT * FROM `sites` $where")->fetchAll();
   }
 
   public function getSite($s){
